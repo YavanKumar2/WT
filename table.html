@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON to Table</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2>JSON Data displayed in a Table</h2>
+    <div id="table-container"></div>
+
+    <script>
+        // Sample JSON data
+        const jsonData = [
+            { name: "John", age: 30, city: "New York" },
+            { name: "Alice", age: 25, city: "Los Angeles" },
+            { name: "Bob", age: 35, city: "Chicago" }
+        ];
+
+        // Function to generate HTML table from JSON data
+        function generateTable(data) {
+            const container = document.getElementById('table-container');
+            const table = document.createElement('table');
+
+            // Create table header
+            const headerRow = table.insertRow();
+            for (let key in data[0]) {
+                const th = document.createElement('th');
+                th.textContent = key.toUpperCase();
+                headerRow.appendChild(th);
+            }
+
+            // Create table rows
+            data.forEach(obj => {
+                const row = table.insertRow();
+                for (let key in obj) {
+                    const cell = row.insertCell();
+                    cell.textContent = obj[key];
+                }
+            });
+
+            container.appendChild(table);
+        }
+
+        // Generate table from JSON data
+        generateTable(jsonData);
+    </script>
+</body>
+</html>
